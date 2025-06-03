@@ -1,9 +1,52 @@
-<nav>
-    <div class="container">
-    <ul class="myUL">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</div>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - What's That Fox?!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col sm:flex-row font-sans">
+
+  <!-- Sidebar -->
+  <nav class="w-full sm:w-64 bg-orange-700 text-black flex flex-col items-center py-8 gap-10">
+    <img src="assets/fox-logo.png" alt="Fox Logo" class="w-20" />
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/home-icon.svg" alt="Home" class="w-6" />
+      <a href="index.html" class="text-black no-underline">HOME</a>
+    </div>
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/about-icon.svg" alt="About" class="w-6" />
+      <a href="about.html" class="text-black no-underline">ABOUT</a>
+    </div>
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/contact-icon.svg" alt="Contact" class="w-6" />
+      <a href="contact.html" class="text-black no-underline">CONTACT</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6 bg-white">
+    <h1 class="text-3xl font-bold mb-4">Contact Us</h1>
+    <p class="mb-6 text-gray-700">Have questions, feedback, or just want to say hello? Drop us a message below!</p>
+
+    <form class="max-w-xl space-y-4">
+      <div>
+        <label for="name" class="block font-medium">Name</label>
+        <input type="text" id="name" name="name" class="w-full mt-1 p-2 border border-gray-300 rounded" required>
+      </div>
+      <div>
+        <label for="email" class="block font-medium">Email</label>
+        <input type="email" id="email" name="email" class="w-full mt-1 p-2 border border-gray-300 rounded" required>
+      </div>
+      <div>
+        <label for="message" class="block font-medium">Message</label>
+        <textarea id="message" name="message" rows="4" class="w-full mt-1 p-2 border border-gray-300 rounded" required></textarea>
+      </div>
+      <button type="submit" class="bg-orange-700 text-white px-4 py-2 rounded hover:bg-orange-800 transition">Send Message</button>
+    </form>
+
+    <p class="text-sm text-gray-600 mt-10">You can also email us at: <a href="mailto:mywonderfulpage@contact.ro" class="underline">mywonderfulpage@contact.ro</a></p>
+  </main>
+</body>
+</html>

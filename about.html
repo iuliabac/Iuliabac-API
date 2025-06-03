@@ -4,25 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About - What's That Fox?!</title>
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="sidebar">
-    <img src="assets/fox-logo.png" alt="Fox Logo" class="logo" />
-    <div class="nav-item"><img src="assets/home-icon.svg" alt="Home" /><a href="index.html">HOME</a></div>
-    <div class="nav-item"><img src="assets/about-icon.svg" alt="About" /><a href="about.html">ABOUT</a></div>
-    <div class="nav-item"><img src="assets/contact-icon.svg" alt="Contact" /><a href="contact.html">CONTACT</a></div>
-  </div>
+<body class="flex flex-col sm:flex-row font-sans">
 
-  <div class="main-content">
-    <h1>About Us</h1>
-    <p>Welcome to <strong>What’s That Fox?!</strong> – your go-to destination for everything fox-related. From intriguing facts about different fox species to fun images and interesting behavior breakdowns, we celebrate these clever creatures in style.</p>
+  <!-- Sidebar -->
+  <nav class="w-full sm:w-64 bg-orange-700 text-black flex flex-col items-center py-8 gap-10">
+    <img src="assets/fox-logo.png" alt="Fox Logo" class="w-20" />
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/home-icon.svg" alt="Home" class="w-6" />
+      <a href="index.html" class="text-black no-underline">HOME</a>
+    </div>
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/about-icon.svg" alt="About" class="w-6" />
+      <a href="about.html" class="text-black no-underline">ABOUT</a>
+    </div>
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/contact-icon.svg" alt="Contact" class="w-6" />
+      <a href="contact.html" class="text-black no-underline">CONTACT</a>
+    </div>
+  </nav>
 
-    <h2>Our Mission</h2>
-    <p>We aim to educate and entertain with accurate, well-researched content that highlights the beauty, adaptability, and mystique of foxes. Whether you're a casual animal lover or a biology enthusiast, there's something here for you!</p>
+  <!-- Main Content -->
+  <main class="flex-1 p-6 bg-white">
+    <h1 class="text-3xl font-bold mb-4">About Us</h1>
+    <section class="space-y-6 max-w-3xl text-gray-800">
+      <p>Welcome to <strong>What’s That Fox?!</strong> – your go-to destination for everything fox-related. From intriguing facts about different fox species to fun images and interesting behavior breakdowns, we celebrate these clever creatures in style.</p>
 
-    <h2>Fun Fact!</h2>
-    <p>Did you know that the Arctic Fox’s fur changes color with the seasons to help it blend in with its surroundings?</p>
-  </div>
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">Our Mission</h2>
+        <p>We aim to educate and entertain with accurate, well-researched content that highlights the beauty, adaptability, and mystique of foxes. Whether you're a casual animal lover or a biology enthusiast, there's something here for you!</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">Fun Fact!</h2>
+        <p>Did you know that the Arctic Fox’s fur changes color with the seasons to help it blend in with its surroundings?</p>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
