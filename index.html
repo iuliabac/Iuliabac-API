@@ -1,62 +1,81 @@
-<html>
-    <link rel="stylesheet" href="style.css">
-    <head>
-        <nav>
-            <div class="container">
-            <ul class="myUL">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article Page - What's That Fox?!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col sm:flex-row font-sans">
+
+  <!-- Sidebar -->
+  <div class="w-full sm:w-64 bg-orange-700 text-black flex flex-col items-center py-8 gap-10">
+    <img src="assets/fox-logo.png" alt="Fox Logo" class="w-20" />
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/home-icon.svg" alt="Home" class="w-6" />
+      <a href="index.html" class="text-black no-underline">HOME</a>
+    </div>
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/about-icon.svg" alt="About" class="w-6" />
+      <a href="about.html" class="text-black no-underline">ABOUT</a>
+    </div>
+    <div class="flex items-center gap-3 text-lg cursor-pointer">
+      <img src="assets/contact-icon.svg" alt="Contact" class="w-6" />
+      <a href="contact.html" class="text-black no-underline">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-6 bg-white">
+    <h1 class="text-3xl font-bold">Article Page - What's That Fox?!</h1>
+    <h2 class="text-xl text-gray-700 mt-2 mb-6">Here you can find all of the articles created by the most talented people!</h2>
+
+    <!-- Articles -->
+    <div class="space-y-8">
+      <!-- Article -->
+      <div class="flex flex-col sm:flex-row gap-6">
+        <img src="https://randomfox.ca/images/85.jpg" alt="Fox 1" class="w-full sm:w-72 rounded-md shadow" />
+        <div class="max-w-xl">
+          <h3 class="text-xl font-semibold">Whispers of the Forest: The Language of Trees</h3>
+          <h4 class="text-gray-600">Author: Dr. Nina Carter</h4>
+          <p class="mt-2 text-gray-800">Description: A fascinating exploration of how trees communicate through underground fungal networks and chemical signals.</p>
+          <p class="text-sm text-gray-500 mt-1">Date: 2024-12-05</p>
         </div>
-        </nav>
-        <h1>ARTICLE PAGE</h1>
-        <h2>Here you can find all of the articles created by the most talented people!</h2>
-    </head>
+      </div>
 
-    <body>
-        <div class="center">
-            <h3>Title: Whispers of the Forest: The Language of Trees</h3>
-            <img src="https://randomfox.ca/images/85.jpg">
-            <h2>Author: Dr. Nina Carter</h2>
-            <p>
-                Description: A fascinating exploration of how trees communicate through underground fungal networks and chemical signals..
-            </p>
-            <p>
-                Date: 2024-12-05
-            </p>
-
-            <h3>Title: The Rise of Eco-Friendly Architecture</h3>
-            <img src="https://randomfox.ca/images/86.jpg">
-            <h2>Author: Julian Moreno</h2>
-            <p>
-                Description: Discover the latest trends in sustainable building design and how they’re changing urban landscapes.
-            </p>
-            <p>
-                Date: 2025-01-22
-            </p>
-            </div>
-            <div class="center">
-            <h3>Title: 10 Productivity Hacks That Actually Work</h3>
-            <img src="https://randomfox.ca/images/80.jpg">
-            <h2>Author: Rachel Kim</h2>
-            <p>
-                Description: A practical guide to boosting efficiency with science-backed techniques and easy daily habits.
-            </p>
-            <p>
-                Date: 2025-03-11
-            </p>
-
-            <h3>Title: A Brief History of Cryptocurrencies</h3>
-            <img src="https://randomfox.ca/images/30.jpg">
-            <h2>Author: Marcus Lee</h2>
-            <p>
-                Description: From Bitcoin to Ethereum—how digital currencies evolved and where they’re headed next.
-            </p>
-            <p>
-                Date: 2024-11-30
-            </p>
+      <!-- Repeat for each article -->
+      <div class="flex flex-col sm:flex-row gap-6">
+        <img src="https://randomfox.ca/images/86.jpg" alt="Fox 2" class="w-full sm:w-72 rounded-md shadow" />
+        <div class="max-w-xl">
+          <h3 class="text-xl font-semibold">The Rise of Eco-Friendly Architecture</h3>
+          <h4 class="text-gray-600">Author: Julian Moreno</h4>
+          <p class="mt-2 text-gray-800">Description: Discover the latest trends in sustainable building design and how they’re changing urban landscapes.</p>
+          <p class="text-sm text-gray-500 mt-1">Date: 2025-01-22</p>
         </div>
-            <p>Contact: Mywonderfulpage@contact.ro </p>
-        </body>
-    </html>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-6">
+        <img src="https://randomfox.ca/images/80.jpg" alt="Fox 3" class="w-full sm:w-72 rounded-md shadow" />
+        <div class="max-w-xl">
+          <h3 class="text-xl font-semibold">10 Productivity Hacks That Actually Work</h3>
+          <h4 class="text-gray-600">Author: Rachel Kim</h4>
+          <p class="mt-2 text-gray-800">Description: A practical guide to boosting efficiency with science-backed techniques and easy daily habits.</p>
+          <p class="text-sm text-gray-500 mt-1">Date: 2025-03-11</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-6">
+        <img src="https://randomfox.ca/images/30.jpg" alt="Fox 4" class="w-full sm:w-72 rounded-md shadow" />
+        <div class="max-w-xl">
+          <h3 class="text-xl font-semibold">A Brief History of Cryptocurrencies</h3>
+          <h4 class="text-gray-600">Author: Marcus Lee</h4>
+          <p class="mt-2 text-gray-800">Description: From Bitcoin to Ethereum—how digital currencies evolved and where they’re headed next.</p>
+          <p class="text-sm text-gray-500 mt-1">Date: 2024-11-30</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-sm text-gray-600 mt-10">Contact: Mywonderfulpage@contact.ro</p>
+  </div>
+</body>
+</html>
