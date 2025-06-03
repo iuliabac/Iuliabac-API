@@ -28,54 +28,50 @@
   <!-- Main Content -->
   <div class="flex-1 p-6 bg-white">
     <h1 class="text-3xl font-bold">Article Page - What's That Fox?!</h1>
-    <h2 class="text-xl text-gray-700 mt-2 mb-6">Here you can find all of the articles created by the most talented people!</h2>
+    <h2 class="text-xl text-gray-700 mt-2 mb-6">Live articles fetched from APIs:</h2>
 
-    <!-- Articles -->
-    <div class="space-y-8">
-      <!-- Article -->
-      <div class="flex flex-col sm:flex-row gap-6">
-        <img src="https://randomfox.ca/images/85.jpg" alt="Fox 1" class="w-full sm:w-72 rounded-md shadow" />
-        <div class="max-w-xl">
-          <h3 class="text-xl font-semibold">Whispers of the Forest: The Language of Trees</h3>
-          <h4 class="text-gray-600">Author: Dr. Nina Carter</h4>
-          <p class="mt-2 text-gray-800">Description: A fascinating exploration of how trees communicate through underground fungal networks and chemical signals.</p>
-          <p class="text-sm text-gray-500 mt-1">Date: 2024-12-05</p>
-        </div>
-      </div>
-
-      <!-- Repeat for each article -->
-      <div class="flex flex-col sm:flex-row gap-6">
-        <img src="https://randomfox.ca/images/86.jpg" alt="Fox 2" class="w-full sm:w-72 rounded-md shadow" />
-        <div class="max-w-xl">
-          <h3 class="text-xl font-semibold">The Rise of Eco-Friendly Architecture</h3>
-          <h4 class="text-gray-600">Author: Julian Moreno</h4>
-          <p class="mt-2 text-gray-800">Description: Discover the latest trends in sustainable building design and how they’re changing urban landscapes.</p>
-          <p class="text-sm text-gray-500 mt-1">Date: 2025-01-22</p>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row gap-6">
-        <img src="https://randomfox.ca/images/80.jpg" alt="Fox 3" class="w-full sm:w-72 rounded-md shadow" />
-        <div class="max-w-xl">
-          <h3 class="text-xl font-semibold">10 Productivity Hacks That Actually Work</h3>
-          <h4 class="text-gray-600">Author: Rachel Kim</h4>
-          <p class="mt-2 text-gray-800">Description: A practical guide to boosting efficiency with science-backed techniques and easy daily habits.</p>
-          <p class="text-sm text-gray-500 mt-1">Date: 2025-03-11</p>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row gap-6">
-        <img src="https://randomfox.ca/images/30.jpg" alt="Fox 4" class="w-full sm:w-72 rounded-md shadow" />
-        <div class="max-w-xl">
-          <h3 class="text-xl font-semibold">A Brief History of Cryptocurrencies</h3>
-          <h4 class="text-gray-600">Author: Marcus Lee</h4>
-          <p class="mt-2 text-gray-800">Description: From Bitcoin to Ethereum—how digital currencies evolved and where they’re headed next.</p>
-          <p class="text-sm text-gray-500 mt-1">Date: 2024-11-30</p>
-        </div>
-      </div>
+    <div class="space-y-10" id="articles-container">
+      <!-- Articles will be injected here -->
     </div>
 
     <p class="text-sm text-gray-600 mt-10">Contact: Mywonderfulpage@contact.ro</p>
   </div>
+
+  <script>
+    async function loadArticles() {
+      const articleCount = 5;
+      const postsUrl = 'https://jsonplaceholder.typicode.com/posts?_limit=' + articleCount;
+      const foxUrl = 'https://randomfox.ca/floof/';
+
+      try {
+        // Fetch posts
+        const postsRes = await fetch(postsUrl);
+        const posts = await postsRes.json();
+
+        // Fetch multiple fox images concurrently
+        const foxFetches = Array.from({ length: articleCount }, () => fetch(foxUrl).then(r => r.json()));
+        const foxes = await Promise.all(foxFetches);
+
+        // Render each article
+        const container = document.getElementById('articles-container');
+        container.innerHTML = posts.map((post, i) => `
+          <div class="flex flex-col sm:flex-row gap-6">
+            <img src="${foxes[i].image}" alt="Fox ${i + 1}" class="w-full sm:w-72 rounded-md shadow" />
+            <div class="max-w-xl">
+              <h3 class="text-xl font-semibold">${post.title}</h3>
+              <h4 class="text-gray-600">Author: API Placeholder</h4>
+              <p class="mt-2 text-gray-800">${post.body}</p>
+              <p class="text-sm text-gray-500 mt-1">Date: ${new Date().toISOString().split('T')[0]}</p>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        console.error('Error loading data:', err);
+        document.getElementById('articles-container').innerText = 'Failed to load articles.';
+      }
+    }
+
+    loadArticles();
+  </script>
 </body>
 </html>
