@@ -3,59 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Article Page - What's That Fox?!</title>
+  <title>What's That Fox?! - Articles</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col sm:flex-row font-sans">
+<body class="font-sans sm:flex sm:flex-row">
 
-  <!-- Sidebar -->
-  <div class="w-full sm:w-64 bg-orange-700 text-black flex flex-col items-center py-8 gap-10">
+  <aside class="w-full sm:w-64 bg-orange-700 text-black flex flex-col items-center py-8 gap-10">
     <img src="assets/fox-logo.png" alt="Fox Logo" class="w-20" />
-    <div class="flex items-center gap-3 text-lg cursor-pointer">
-      <img src="assets/home-icon.svg" alt="Home" class="w-6" />
-      <a href="index.html" class="text-black no-underline">HOME</a>
-    </div>
-    <div class="flex items-center gap-3 text-lg cursor-pointer">
-      <img src="assets/about-icon.svg" alt="About" class="w-6" />
-      <a href="about.html" class="text-black no-underline">ABOUT</a>
-    </div>
-    <div class="flex items-center gap-3 text-lg cursor-pointer">
-      <img src="assets/contact-icon.svg" alt="Contact" class="w-6" />
-      <a href="contact.html" class="text-black no-underline">CONTACT</a>
-    </div>
-  </div>
+    <nav class="flex flex-col gap-6">
+      <a href="index.html" class="flex items-center gap-3 text-lg text-black no-underline">
+        <img src="assets/home-icon.svg" alt="Home" class="w-6" />
+        <span>HOME</span>
+      </a>
+      <a href="about.html" class="flex items-center gap-3 text-lg text-black no-underline">
+        <img src="assets/about-icon.svg" alt="About" class="w-6" />
+        <span>ABOUT</span>
+      </a>
+      <a href="contact.html" class="flex items-center gap-3 text-lg text-black no-underline">
+        <img src="assets/contact-icon.svg" alt="Contact" class="w-6" />
+        <span>CONTACT</span>
+      </a>
+    </nav>
+  </aside>
 
-  <!-- Main Content -->
-  <div class="flex-1 p-6 bg-white">
-    <h1 class="text-3xl font-bold">Article Page - What's That Fox?!</h1>
-    <h2 class="text-xl text-gray-700 mt-2 mb-6">Live articles fetched from APIs:</h2>
+  <main class="flex-1 p-6 bg-white">
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold">What's That Fox?!</h1>
+      <h2 class="text-xl text-gray-700 mt-2">Live articles with and about foxes</h2>
+    </header>
 
-    <div class="space-y-10" id="articles-container">
-      <!-- Articles will be injected here -->
-    </div>
+    <section id="articles-container" class="space-y-10">
 
-    <p class="text-sm text-gray-600 mt-10">Contact: Mywonderfulpage@contact.ro</p>
-  </div>
+    </section>
+
+    <footer class="mt-10 text-sm text-gray-600">
+      Contact: Mywonderfulpage@contact.ro
+    </footer>
+  </main>
 
   <script>
     async function loadArticles() {
       const articleCount = 5;
-      const postsUrl = 'https://jsonplaceholder.typicode.com/posts?_limit=' + articleCount;
+      const postsUrl = `https://jsonplaceholder.typicode.com/posts?_limit=${articleCount}`;
       const foxUrl = 'https://randomfox.ca/floof/';
 
       try {
-        // Fetch posts
-        const postsRes = await fetch(postsUrl);
-        const posts = await postsRes.json();
+        const postsResponse = await fetch(postsUrl);
+        const posts = await postsResponse.json();
 
-        // Fetch multiple fox images concurrently
-        const foxFetches = Array.from({ length: articleCount }, () => fetch(foxUrl).then(r => r.json()));
-        const foxes = await Promise.all(foxFetches);
+        // Concurrent fox image requests
+        const foxPromises = Array.from({ length: articleCount }, () => fetch(foxUrl).then(res => res.json()));
+        const foxes = await Promise.all(foxPromises);
 
-        // Render each article
         const container = document.getElementById('articles-container');
         container.innerHTML = posts.map((post, i) => `
-          <div class="flex flex-col sm:flex-row gap-6">
+          <article class="flex flex-col sm:flex-row gap-6">
             <img src="${foxes[i].image}" alt="Fox ${i + 1}" class="w-full sm:w-72 rounded-md shadow" />
             <div class="max-w-xl">
               <h3 class="text-xl font-semibold">${post.title}</h3>
@@ -63,11 +65,11 @@
               <p class="mt-2 text-gray-800">${post.body}</p>
               <p class="text-sm text-gray-500 mt-1">Date: ${new Date().toISOString().split('T')[0]}</p>
             </div>
-          </div>
+          </article>
         `).join('');
       } catch (err) {
-        console.error('Error loading data:', err);
-        document.getElementById('articles-container').innerText = 'Failed to load articles.';
+        console.error('Error:', err);
+        document.getElementById('articles-container').innerText = 'Could not load articles.';
       }
     }
 
